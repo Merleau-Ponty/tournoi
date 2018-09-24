@@ -34,6 +34,6 @@
         <section >
             <?= $content_for_layout ?>
         </section>
-   
+        <footer>Site réalisé par l'équipe SIO17LMP</footer>
 </body>
 </html>
