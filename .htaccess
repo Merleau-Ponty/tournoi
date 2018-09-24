@@ -1,0 +1,4 @@
+RewriteEngine On
+#RewriteCond %{REQUEST_URI} =/ # Le chemin complet du script tel qu'apparaissant dans l'URL
+
+RewriteRule (.*) webroot/index.php
