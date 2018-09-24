@@ -11,7 +11,7 @@ class Conf {
     static $databases = array(
         'default' => array(
             'host' => 'localhost',
-            'database' => 'indis',
+            'database' => 'tournoi',
             'login' => 'root',
             'password' => ''
         )
