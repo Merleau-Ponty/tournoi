@@ -1,7 +1,7 @@
 <?php
 
 /*
- * 25/09/2018 amelioration de la class
+ * 25/09/2018 amelioration de la classe Model
  */
 
 /**
