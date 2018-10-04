@@ -10,13 +10,13 @@ include 'header.php';
     </p>
     <p id="choixjoueur">
     <span id="inscription_logo">    
-        <a href="inscription_visiteur.php" style="text-decoration:none; color: black;"><img src="webroot/img/Capture1.PNG" width="200" height="200" alt=""/></a>
+        <a href="<?= BASE_URL ?>/tourn/inscription_visiteur" style="text-decoration:none; color: black;"><img src="webroot/img/Capture1.PNG" width="200" height="200" alt=""/></a>
     </span>
     <span id="liste_joueur">
-        <a href="liste_inscrit.php" style="text-decoration:none; color: black;"><img src="webroot/img/Capture2.PNG" width="200" height="200" alt=""/></a>
+        <a href="<?= BASE_URL ?>/tourn/liste_inscrit" style="text-decoration:none; color: black;"><img src="webroot/img/Capture2.PNG" width="200" height="200" alt=""/></a>
     </span>
     <span id="liste_tournoi">
-        <a href="liste_match.php" style="text-decoration:none; color: black;"><img src="webroot/img/Capture3.PNG" width="200" height="210" alt=""/></a>
+        <a href="<?= BASE_URL ?>/tourn/liste_match" style="text-decoration:none; color: black;"><img src="webroot/img/Capture3.PNG" width="200" height="210" alt=""/></a>
     </span>
     </p>
     
