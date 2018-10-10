@@ -1,44 +1,20 @@
 
-
-<!DOCTYPE html>
-
-<!--test sur les téléphones portables -->
-<html>
-    <head>
-<!--        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title><?php echo isset($title_for_layout) ? $title_for_layout : 'Gestion des tournois'; ?></title>
-       <link href='<?php echo BASE_SITE . DS . '/css/style.css' ?>' rel="stylesheet">
-
-        <style type="text/css">
-            /* Style pour l'exemple*/
-
-        </style>
-    </head>
-    <body >
-
-
-        <header  >
-          
-            <h1 > BTS SIO Gestion des tournois</h1>
-        </header>
-        a rajouter 
-        <div >
-            fin 
-            <ul >
-                <li class="active" ><a href="<?= BASE_URL ?>lien"> Accueil </a> </li>
-                
-
-            </ul>
-        </div>
-
-        <section >
-
-        </section>-->
-<?php
-$test=include (BASE_URL .'/tourn/header.php');
-echo $test;
-?>
 <!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Gestion Tournoi Jeux Vidéos</title>
+<link href="<?= BASE_SITE ?>/css/style.css" rel="stylesheet" type="text/css">
+</head>
+<div id="header">
+<h1 id="bandeau"><img id="ea" src="<?= BASE_SITE ?>/img/ea.png" width="80" height="80" alt="Electronic Arts"/><a href="accueil_visiteur.php" style="text-decoration:none; color: white;">Gestion Tournoi Jeux Vidéos</a><a href="acceuil_organisateur.php"><img id="login" src="<?= BASE_SITE ?>/img/logo.png" width="190" height="80" alt=""/></a></h1>
+</div>
+<body>
+
+</body>
+</html>
+<!doctype html>
+ 
 <body id="appli">
     <p id="label">
         <span id="inscription_logol"><a href="inscription_visiteur.php" style="text-decoration:none; color: black;">S’inscrire en ligne</span></a> 
@@ -47,18 +23,19 @@ echo $test;
     </p>
     <p id="choixjoueur">
     <span id="inscription_logo">    
-        <a href="<?= BASE_URL ?>/tourn/inscription_visiteur" style="text-decoration:none; color: black;"><img src="webroot/img/Capture1.PNG" width="200" height="200" alt=""/></a>
+        <a href="<?= BASE_URL ?>/tourn/inscription_visiteur" style="text-decoration:none; color: black;"><img src="<?= BASE_SITE ?>/img/Capture1.PNG" width="200" height="200" alt=""/></a>
     </span>
     <span id="liste_joueur">
-        <a href="<?= BASE_URL ?>/tourn/liste_inscrit" style="text-decoration:none; color: black;"><img src="webroot/img/Capture2.PNG" width="200" height="200" alt=""/></a>
+        <a href="<?= BASE_URL ?>/tourn/liste_inscrit" style="text-decoration:none; color: black;"><img src="<?= BASE_SITE ?>/img/Capture2.PNG" width="200" height="200" alt=""/></a>
     </span>
     <span id="liste_tournoi">
-        <a href="<?= BASE_URL ?>/tourn/liste_match" style="text-decoration:none; color: black;"><img src="webroot/img/Capture3.PNG" width="200" height="210" alt=""/></a>
+        <a href="<?= BASE_URL ?>/tourn/liste_match" style="text-decoration:none; color: black;"><img src="<?= BASE_SITE ?>/img/Capture3.PNG" width="200" height="210" alt=""/></a>
     </span>
     </p>
     
 
-        <footer>Site réalisé par l'équipe SIO17LMP</footer>
+     
                     <?= $content_for_layout ?>
+        
 </body>
 </html>
