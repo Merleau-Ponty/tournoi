@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-            <?= $content_for_layout ?>
+
 <!--test sur les téléphones portables -->
 <html>
     <head>
@@ -35,5 +35,6 @@
 
         </section>
         <footer>Site réalisé par l'équipe SIO17LMP</footer>
+                    <?= $content_for_layout ?>
 </body>
 </html>
