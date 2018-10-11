@@ -14,7 +14,7 @@
 class TournController extends Controller{
     //put your code here
     public function home() {
-   $this->render('home');
+   //$this->render('home');
 }
     public function liste_inscrit() {
    $modJoueurs= $this->loadModel('Joueurs');
