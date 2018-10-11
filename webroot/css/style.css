@@ -132,6 +132,7 @@ body{
     border-color:#00c0ff;
     border-style:solid;
     border-width:3px;
+    padding: 20%;
 }
 .arrondi{
     border-radius:60px;
@@ -142,4 +143,5 @@ body{
 }
 .listesecondaire{
     margin-right: 75%;
+   
 }
