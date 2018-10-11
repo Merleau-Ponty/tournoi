@@ -12,7 +12,7 @@
  */
 class homeController extends Controller {
     //put your code here
-public function __construct() {
+public function home() {
    $this->render('home');
 }
 
