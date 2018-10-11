@@ -7,7 +7,7 @@
     <tr class="tableau arrondi ">
 
         <td class="tableau arrondi">'.$ligne->PSEUDO.'</td>
-        <td class="tableau arrondi">'.$ligne->ETAT.'</td>
+
 
     </tr>
     </table>';
@@ -28,7 +28,7 @@ else {
 
 
         <td class="tableau arrondi">'.$ligne->PSEUDO.'</td>
-        <td class="tableau arrondi">'.$ligne->ETAT.'</td>
+     
 
     </tr>
     </table>';
