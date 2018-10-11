@@ -1,14 +1,43 @@
-<!-- on affiche les lignes de la table messages ($d['messages'])=>$messages)-->
-<table style="margin-left: 45%;">
-    <tr><td>NOM</td><td>PRENOM</td><td>PSEUDO</td></tr>
-    <?php foreach ($joueurs as $ligne):?>
+<h1>Liste Secondaire</h1>
+<td>PSEUDO</td></tr>
+<?php foreach ($joueurs as $ligne):?>
+<?php if ($ligne->ETAT==0){
+    echo '
+    <table style="margin-left: 55%;">
+    <tr class="tableau arrondi ">
 
-    <tr class="tableau arrondi">
-
-        <td class="tableau arrondi"><?= $ligne->NOM; ?></td>
-        <td class="tableau arrondi"><?= $ligne->PRENOM; ?></td>
-        <td class="tableau arrondi"><?= $ligne->PSEUDO; ?></td>
+        <td class="tableau arrondi">'.$ligne->PSEUDO.'</td>
+        <td class="tableau arrondi">'.$ligne->ETAT.'</td>
 
     </tr>
-    <?php endforeach;?>
-</table>
+    </table>';
+    
+}
+else {
+    }
+?>
+<?php endforeach;?>
+  <h1>Liste Principale</h1>
+<td>PSEUDO</td></tr>  
+ <?php foreach ($joueurs as $ligne):?>
+    
+<?php if ($ligne->ETAT==1){
+    echo '
+    <table style="margin-left: 55%;">
+    <tr class="tableau arrondi ">
+
+
+        <td class="tableau arrondi">'.$ligne->PSEUDO.'</td>
+        <td class="tableau arrondi">'.$ligne->ETAT.'</td>
+
+    </tr>
+    </table>';
+    
+}
+else {
+    }
+?>
+<?php endforeach;?>
+       
+
+
