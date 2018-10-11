@@ -12,8 +12,8 @@ class Conf {
         'default' => array(
             'host' => 'localhost',
             'database' => 'tournoi',
-            'login' => 'tournoi',
-            'password' => 'tournoi'
+            'login' => 'root',
+            'password' => ''
         )
     );
 
