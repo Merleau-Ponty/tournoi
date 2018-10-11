@@ -16,4 +16,7 @@ class TournController extends Controller{
     public function home() {
    $this->render('home');
 }
+    public function liste_inscrit() {
+   $this->render('liste_inscrit');
+}
 }
