@@ -12,7 +12,7 @@
  */
 class HomeController extends Controller {
     //put your code here
-public function __construct() {
-    $this->render('home'.DIRECTORY_SEPARATOR.'accueil_visiteur');
+//public function __construct() {
+//    $this->render('home'.DIRECTORY_SEPARATOR.'accueil_visiteur');
 }
 }
