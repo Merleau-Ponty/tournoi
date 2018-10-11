@@ -11,7 +11,7 @@
  *
  * @author Maxime GLOD
  */
-class TournController {
+class TournController extends Controller{
     //put your code here
     public function home() {
    $this->render('home');
