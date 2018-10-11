@@ -13,4 +13,7 @@
  */
 class TournController {
     //put your code here
+    public function home() {
+   $this->render('home');
+}
 }
