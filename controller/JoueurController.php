@@ -44,16 +44,16 @@ class JoueurController extends Controller{
 
             if (empty($d['nom'])) {
             $valid = false;
-                $d['info'] = $d['info'] . "<br>Le nom est obligatoire";
+                $d['info'] = $d['info'] . "<br>Le nom est obligatoire ! ";
             }
 
             if (empty($d['prenom'])) {
              $valid = false;
-                $d['info'] = $d['info'] . "<br>Le prénom est obligatoire";
+                $d['info'] = $d['info'] . "<br>Le prénom est obligatoire ! ";
             }
              if (empty($d['pseudo'])) {
              $valid = false;
-                $d['info'] = $d['info'] . "<br>Le pseudo est obligatoire";
+                $d['info'] = $d['info'] . "<br>Le pseudo est obligatoire ! ";
             }
              
 
