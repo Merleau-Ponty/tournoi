@@ -52,7 +52,7 @@
                 echo $option;
                 echo '</select>';
             } else {
-                echo 'Auccun tournoi disponible !!';
+                echo 'Aucun tournoi disponible !!';
             }
             ?>
         </div>
