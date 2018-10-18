@@ -1,39 +1,25 @@
 
-
-<!DOCTYPE html>
-
-<!--test sur les téléphones portables -->
+<!doctype html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title><?php echo isset($title_for_layout) ? $title_for_layout : 'Gestion des tournois'; ?></title>
-       <link href='<?php echo BASE_SITE . DS . '/css/style.css' ?>' rel="stylesheet">
+<head>
+<meta charset="utf-8">
+<title>Gestion Tournoi Jeux Vidéos</title>
+<link href="<?= BASE_SITE ?>/css/style.css" rel="stylesheet" type="text/css">
+</head>
+<div id="header">
+<h1 id="bandeau"><img id="ea" src="<?= BASE_SITE ?>/img/ea.png" width="80" height="80" alt="Electronic Arts"/><a href="home" style="text-decoration:none; color: white;">Gestion Tournoi Jeux Vidéos</a><a href="acceuil_organisateur"><img id="login" src="<?= BASE_SITE ?>/img/logo.png" width="190" height="80" alt=""/></a></h1>
+</div>
+<body>
 
-        <style type="text/css">
-            /* Style pour l'exemple*/
+</body>
+</html>
+<!doctype html>
+ 
 
-        </style>
-    </head>
-    <body >
+    
 
-
-        <header  >
-          
-            <h1 > BTS SIO Gestion des tournois</h1>
-        </header>
-        <!--a rajouter -->
-        <div >
-            <!--fin -->
-            <ul >
-                <li class="active" ><a href="<?= BASE_URL ?>lien"> Accueil </a> </li>
-                
-
-            </ul>
-        </div>
-
-        <section >
-            <?= $content_for_layout ?>
-        </section>
-        <footer>Site réalisé par l'équipe SIO17LMP</footer>
+     
+                    <?= $content_for_layout ?>
+        
 </body>
 </html>
