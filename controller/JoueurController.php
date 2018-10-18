@@ -19,16 +19,14 @@ class JoueurController extends Controller{
    $modJoueurs= $this->loadModel('Joueurs');
         $d['joueurs']=$modJoueurs->find();
         $this->set($d);
-}
-    public function nouveau() {
-//on rajoute le traitement du formulaire
-//on initialise les variables
+
         $d['nom'] = '';
         $d['prenom']='';
         $d['pseudo'] = '';
         $d['tournoi'] = '';
          $d['info'] = '';
         $inscription = false;
+         $valid = true;
         $modTournois= $this->loadModel('Tournois');
         $d['tournois']=$modTournois->find();
 //cas ou le formulaire a été soumis
@@ -36,6 +34,7 @@ class JoueurController extends Controller{
             $d['nom'] = $_POST['nom'];
             $d['prenom'] = $_POST['prenom'];
             $d['pseudo']=$_POST['pseudo'];
+            $d['tournoi']=$_POST['tournoi'];
             
             if (isset($_POST['inscription'])) {
                 $inscription = true;
@@ -44,28 +43,29 @@ class JoueurController extends Controller{
 //validation des données
 
             if (empty($d['nom'])) {
-            
+            $valid = false;
                 $d['info'] = $d['info'] . "<br>Le nom est obligatoire";
             }
 
             if (empty($d['prenom'])) {
-             
+             $valid = false;
                 $d['info'] = $d['info'] . "<br>Le prénom est obligatoire";
             }
              if (empty($d['pseudo'])) {
-             
+             $valid = false;
                 $d['info'] = $d['info'] . "<br>Le pseudo est obligatoire";
             }
              
 
 //on prépare la requête SQL si les données sont valides
-            if ($inscription) {
-                $message_prep = addslashes($d['joueurs']);
-                $modJoueur = $this->loadModel('Joueur');
-                $colones = array('ID_TOURNOI','NOM', 'PRENOM','PSEUDO',);
-                $valeurs = array($d['tournois'], $d['nom'], $d['prenom'], $d['pseudo']);
-                $id = $modJoueur->insertAI($colones, $valeurs);
-                $d['info'] .= 'Joueur n°' . $id . ' bien inséré';
+            if ($valid && $inscription) {
+      
+                $modJoueurs = $this->loadModel('Joueurs');
+                $colones = array('ID_TOURNOI','NOM', 'PRENOM','PSEUDO');
+                $valeurs = array($d['tournoi'], $d['nom'], $d['prenom'], $d['pseudo']);
+                
+                $id = $modJoueurs->insertAI($colones, $valeurs);
+                $d['info'] .= 'Joueur n° ' . $id . ' bien inséré';
             }
 
    

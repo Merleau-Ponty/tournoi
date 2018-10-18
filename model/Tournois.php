@@ -12,6 +12,6 @@
  * @author Maxime GLOD
  */
 class Tournois extends Model {
-    public $table='TOURNOIS';
+    public $table='tournois';
     //put your code here
 }
