@@ -6,7 +6,7 @@
     </p>
     <p id="choixjoueur">
     <span id="inscription_logo">    
-        <a href="<?= BASE_URL ?>/tourn/inscription_visiteur" style="text-decoration:none; color: black;"><img src="<?= BASE_SITE ?>/img/Capture1.PNG" width="200" height="200" alt=""/></a>
+        <a href="<?= BASE_URL ?>/joueur/inscription_joueur" style="text-decoration:none; color: black;"><img src="<?= BASE_SITE ?>/img/Capture1.PNG" width="200" height="200" alt=""/></a>
     </span>
     <span id="liste_joueur">
         <a href="<?= BASE_URL ?>/tourn/liste_inscrit" style="text-decoration:none; color: black;"><img src="<?= BASE_SITE ?>/img/Capture2.PNG" width="200" height="200" alt=""/></a>
