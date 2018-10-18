@@ -67,7 +67,7 @@ class JoueurController extends Controller{
                 $valeurs = array($d['tournoi'], $d['nom'], $d['prenom'], $d['pseudo'],$score,$victoires);
                 
                 $id = $modJoueurs->insertAI($colones, $valeurs);
-                $d['info'] .= 'Joueur n° ' . $id . ' bien inséré';
+                $d['info'] .= 'Merci pour votre inscription '.$d['pseudo'].' !';
             }
 
    
