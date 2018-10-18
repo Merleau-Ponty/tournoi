@@ -25,7 +25,9 @@ class JoueurController extends Controller{
         $d['pseudo'] = '';
         $d['tournoi'] = '';
          $d['info'] = '';
-        $inscription = false;
+        $score=0;
+        $victoires=0;
+         $inscription = false;
          $valid = true;
         $modTournois= $this->loadModel('Tournois');
         $d['tournois']=$modTournois->find();
@@ -61,8 +63,8 @@ class JoueurController extends Controller{
             if ($valid && $inscription) {
       
                 $modJoueurs = $this->loadModel('Joueurs');
-                $colones = array('ID_TOURNOI','NOM', 'PRENOM','PSEUDO');
-                $valeurs = array($d['tournoi'], $d['nom'], $d['prenom'], $d['pseudo']);
+                $colones = array('ID_TOURNOI','NOM', 'PRENOM','PSEUDO','SCORE_TOTAL','NB_VICTOIRES');
+                $valeurs = array($d['tournoi'], $d['nom'], $d['prenom'], $d['pseudo'],$score,$victoires);
                 
                 $id = $modJoueurs->insertAI($colones, $valeurs);
                 $d['info'] .= 'Joueur n° ' . $id . ' bien inséré';
