@@ -21,7 +21,7 @@
      
         <?php foreach($tournois as $tournoi):?>
         
-        <option value="<?=$tournois->id?>"><?=$tournois->libelle?></option>
+        <option value="<?=$tournoi->ID_TOURNOI ?>"><?=$tournoi->NOM ?></option>
         
         <?php endforeach;?>
     </select></input>
@@ -31,3 +31,4 @@
         <input type='submit' name='inscription' value='Inscription' />
     </div>
 </form>
+<p><strong><?= $info ?></strong></p>
