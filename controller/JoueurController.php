@@ -93,12 +93,12 @@ class JoueurController extends Controller{
 //   
       $modListeP= $this->loadModel('ListeP');
             $ligneP = $modListeP->find('ETAT');
-                echo count(($ligneP));
+                
                 $listeprincipale=count($ligneP);
    
                       $modListeS= $this->loadModel('ListeS');
             $ligneS = $modListeS->find('ETAT');
-                echo count(($ligneS));
+            
                 $listesecondaire=count($ligneS);
                        
         if ( $listesecondaire>=16 && $listesecondaire%8==0 && $listeprincipale<64 ){
