@@ -27,6 +27,7 @@ class JoueurController extends Controller{
          $d['info'] = '';
         $score=0;
         $victoires=0;
+        $etat=0;
          $inscription = false;
          $valid = true;
         $modTournois= $this->loadModel('Tournois');
@@ -63,8 +64,8 @@ class JoueurController extends Controller{
             if ($valid && $inscription) {
       
                 $modJoueurs = $this->loadModel('Joueurs');
-                $colones = array('ID_TOURNOI','NOM', 'PRENOM','PSEUDO','SCORE_TOTAL','NB_VICTOIRES');
-                $valeurs = array($d['tournoi'], $d['nom'], $d['prenom'], $d['pseudo'],$score,$victoires);
+                $colones = array('ID_TOURNOI','NOM', 'PRENOM','PSEUDO','ETAT','SCORE_TOTAL','NB_VICTOIRES');
+                $valeurs = array($d['tournoi'], $d['nom'], $d['prenom'], $d['pseudo'],$etat,$score,$victoires);
                 
                 $id = $modJoueurs->insertAI($colones, $valeurs);
                 $d['info'] .= 'Merci pour votre inscription '.$d['pseudo'].' !';
@@ -73,5 +74,45 @@ class JoueurController extends Controller{
    
         }
         $this->set($d);
+        
+        
+             $d['info']='';
+ 
+   $modJoueurs= $this->loadModel('Joueurs');
+   
+   
+   
+//        $params = array();
+//        $projection = 'COUNT(ETAT)';
+//        $conditions = 'ETAT=1';
+//         $params = array( 'projection' => $projection, 'conditions' => $conditions);
+//         $d['lp'] =$modJoueurs->find($params);
+//        $this->set($d);
+//   echo ($d['lp']);
+//   
+//   
+      $modListeP= $this->loadModel('ListeP');
+            $ligneP = $modListeP->find('ETAT');
+                echo count(($ligneP));
+                $listeprincipale=count($ligneP);
+   
+                      $modListeS= $this->loadModel('ListeS');
+            $ligneS = $modListeS->find('ETAT');
+                echo count(($ligneS));
+                $listesecondaire=count($ligneS);
+                       
+        if ( $listesecondaire>=16 && $listesecondaire%8==0 && $listeprincipale<64 ){
+            $d['info']="info dans le if";
+             $condition=array("ETAT"=>0);
+        //valeur a mettre à jour
+        $donnees=array("ETAT"=>1);
+        //a mettre dans un seul tabnleau
+        $requete=array("donnees"=>$donnees,"conditions"=>$condition);
+        $d['info']=$modJoueurs->update($requete);
+        
+        $this->set($d);
+        }
+
+        
     }
 }
