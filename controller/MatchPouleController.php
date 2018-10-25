@@ -2,7 +2,7 @@
 
 class MatchPouleController extends Controller {
     
-    public function create($num_poule){
+    public function create($num_poule_current){
         
         // Définition du context
         $_SESSION['idtournoi'] = 1;
@@ -12,10 +12,10 @@ class MatchPouleController extends Controller {
         $_SESSION['time'] = $tmp[1];
         $_SESSION['datefin'] = '2020-10-20 12:12:00';
         
-        // unset($_SESSION['poule_created']);
+        //unset($_SESSION['poule_created']);
         // Pour charger les joueurs d'une poule et renvoie un tableau de matchs
-        $d['num_poule'] = $num_poule;
-
+        $d['num_poule'] = $num_poule_current;
+               
         //Test pour savoir si on rentre pour la première fois sur la page et charger les joueurs
         //Si le formulaire est existant on fait les insert sinon on charge le form
         if(isset($_POST['date_0'])){
@@ -59,13 +59,12 @@ class MatchPouleController extends Controller {
                 // On stock toutes les données pour ensuite toutes les insérer en même temps pour préserver l'intégrité des données
                 $matchs[]= array('date_heure'=>$datetime,'joueur1'=>$joueur1,'joueur2'=>$joueur2);
             }
-            var_dump($valid);
             // Si toutes les données sont valides, on insert les données 
             if ($valid == TRUE){
                 foreach ($matchs as $match){
                     //Matchs
-                    $colonnes = array('id_tournoi','id_poule','date_heure');
-                    $values = array($_SESSION['idtournoi'],$num_poule,$match['date_heure']);
+                    $colonnes = array('id_tournoi','id_poule','type_match','date_heure');
+                    $values = array($_SESSION['idtournoi'],$num_poule_current,'0',$match['date_heure']);
                     $id_match = $modelMatchs->insertAI($colonnes,$values);
                     //Scores
                     $colonnes = array('id_joueur','id_match');
@@ -74,32 +73,76 @@ class MatchPouleController extends Controller {
                     $values = array($match['joueur2'],$id_match);
                     $modelScores->insertAI($colonnes,$values);  
                 }
-                // Si on est à la poule 8, on dirige l'utilisateur vers la liste des matchs
-                if ($num_poule == 8){
-                    $this->redirect('/poule/liste/1');
-                } else {
-                    // Gestion des pages pour éviter que l'utilisateur refasse la même poule plusieurs fois
-                    if(isset($_SESSION['poule_created'])){
-                        $poule_created = $_SESSION['poule_created'];
-                    }
-                    $poule_created[] = $num_poule;
+                
+                // Affichage de l'info dans la prochaine view
+                $_SESSION['info'] = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                                        Les matchs de la poule numéro '.$num_poule_current.' ont bien été créés.
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>';
+                
+                // Gestion de la création des poules qui va servir à la redirection
+                // Si c'est la première fois qu'on arrive dans les création des matchs
+                if(!isset($_SESSION['poule_created'])){
+                    // On crée la variable de session on enregistrant la poule créée
+                    $poule_created[] = $num_poule_current;
                     $_SESSION['poule_created'] = $poule_created;
-                    // Redirection vers la poule d'après
-                    $this->redirect('/poule/create/'.($num_poule+1));
-                } 
+                } else {
+                    // Sinon on récupère les poules créées et on ajoute celle-ci
+                    $poule_created = $_SESSION['poule_created'];
+                    $poule_created[] = $num_poule_current;
+                    $_SESSION['poule_created'] = $poule_created;
+                }
+                
+                // Gestion des redirections
+                // Si tous les matchs ne sont pas créés on gère automatiquement la redirection de page
+                if(count($_SESSION['poule_created'])<8){
+                    // Cette variable va déterminer les poules qui reste à créées
+                    $poules = ['1','2','3','4','5','6','7','8'];
+                    // Pour chaque poule créée on supprime dans $poules sa correspondance
+                    foreach ($_SESSION['poule_created'] as $num){
+                        foreach ($poules as $cle => $poule){
+                            if ($num == $poule){
+                                unset($poules[$cle]);
+                            }
+                        }
+                    }
+                    // On récupère le premier numéro du tableau de poules restantes
+                    $num_poule = (array_shift(array_keys($poules))+1);
+                    // Redirection vers la poule qui reste à faire
+                    $this->redirect('/matchpoule/create/'.($num_poule));
+                    // Permet d'arrêter l'exécution du code pour effectuer la redirection
+                    exit();
+                } else {
+                    // Toutes les matchs de poule sont créés
+                    $this->redirect('/matchpoule/liste/1');
+                    // Permet d'arrêter l'exécution du code pour effectuer la redirection
+                    // Utilisé dans le cadre que le code de la view n'affecte pas le traitement après la redirection
+                    exit();                
+                }
             } else {
+                // Affichage de l'info dans la prochaine view
+                $_SESSION['info'] = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        Il y a une erreur dans le formulaire, veillez resaisir les données !
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>';
                 // On vide le $_POST pour recharger le formulaire
                 unset($_POST);
-                // Une données est invalide, on revoie donc sur le formulaire de la même poule
-                $this->redirect('/poule/create/'.$num_poule);
+                // Une données est invalide, on renvoie donc sur le formulaire de la même poule
+                $this->redirect('/matchpoule/create/'.($num_poule_current));
+                // Permet d'arrêter l'exécution du code pour effectuer la redirection
+                exit();
             }
         // Chargement du formulaire
-        } else {        
-        
+        } else {
+            
             //On charge le model JoueurPoule pour rechercher les joueurs qui sont dans la poule désignée
             $model = $this->loadModel('JoueurPoule');
             $projection = 'Joueurs.id_joueur,Joueurs.pseudo,Poules.numero';
-            $condition = array("Poules.numero"=>$num_poule);
+            $condition = array("Poules.numero"=>$num_poule_current);
             $params = array( 'projection' => $projection,'conditions'=>$condition);
             $result = $model->find($params); // Récupération des joueurs
 
