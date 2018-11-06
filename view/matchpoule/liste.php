@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 
 <!--On affiche les lignes de la table messages $d['messages']-->
@@ -20,4 +21,7 @@
     </tr>
     <?php endforeach;?>
 </table>
+=======
+ca marche
+>>>>>>> origin/master
 

@@ -1,7 +1,9 @@
 <?php
 
 /*
- * 25/09/2018 amelioration de la classe Model
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 
 /**
@@ -42,7 +44,13 @@ class Model {
         }
     }
 
-    function find($req = '') {
+    function find($req = '', $ret = 'OBJ') {
+        //si $ret !=OBJ on renverra un tableau associatif
+        if ($ret == 'OBJ') {
+            $par_ret = PDO::FETCH_OBJ;
+        } else {
+            $par_ret = PDO::FETCH_BOTH;
+        }
         $sql = 'select ';
         //si la projection est renseignée on l'utilise sinon on met toutes les colonnes (*)
         if (isset($req['projection'])) {
@@ -75,15 +83,22 @@ class Model {
 
             $sql .= $req['groupby'];
         }
+        try {
 
-        $pre = $this->db->prepare($sql);
-        $pre->execute();
-
-        return $pre->fetchall(PDO::FETCH_OBJ);
+            $pre = $this->db->prepare($sql);
+            $pre->execute();
+            return $pre->fetchall($par_ret);
+        } catch (PDOException $e) {
+            if (Conf::$debug >= 1) {
+                die($e->getMessage());
+            } else {
+                die('Problème pour executer la requête');
+            }
+        }
     }
 
-    function findFirst($req) {
-        return current($this->find($req));
+    function findFirst($req, $ret = 'OBJ') {
+        return current($this->find($req, $ret));
     }
 
     function delete($req) {
@@ -119,6 +134,7 @@ class Model {
     }
 
     function update($req) {
+        $info = null;
         $sql = 'update ' . $this->table . ' set ';
         //on récupère les données à mettre à jour dans $req['donnees'] et la clef primaire dans $req['cle']
         //on met des quotes aux chaines de caractères
@@ -132,7 +148,15 @@ class Model {
         $sql .= implode(',', $cond);
         $sql .= ' where ';
         $cle = array();
-        foreach ($req['cle'] as $k => $v) {
+        $conditions = array();
+        //pour être compatible avec une version où on attendait cle au lieu de conditions
+        if (isset($req['cle'])) {
+            $conditions = $req['cle'];
+        }
+        if (isset($req['conditions'])) {
+            $conditions = $req['conditions'];
+        }
+        foreach ($conditions as $k => $v) {
             if (!is_numeric($v)) {
                 $v = $this->db->quote($v);
             }
@@ -141,8 +165,17 @@ class Model {
 
         $sql .= implode('AND', $cle);
 
-        $pre = $this->db->prepare($sql);
-        $pre->execute();
+        try {
+            $pre = $this->db->prepare($sql);
+
+            $pre->execute();
+
+
+//on traite l'exception dans le catch
+        } catch (PDOException $e) {
+            $info = $e->getMessage();
+        }
+        return $info;
     }
 
     //inserer une ligne avec une colonne en ai
@@ -162,14 +195,64 @@ class Model {
         $sql .= implode(',', $cond);
 
         $sql .= ');';
+//récupérer les erreurs
 
+        try {
+            $pre = $this->db->prepare($sql);
+        } catch (PDOException $e) {
+            if (Conf::$debug >= 1) {
+                die($e->getMessage());
+            } else {
+                die("Ajout impossible, données invalides");
+            }
+        }
+        try {
+            $pre->execute();
+        } catch (PDOException $e) {
+            if (Conf::$debug >= 1) {
+                die($e->getMessage());
+            } else {
+                die("Ajout impossible, données invalides");
+            }
+        }
 
-        $pre = $this->db->prepare($sql);
-        $pre->execute();
         $tab = $this->db->query('SELECT LAST_INSERT_ID() as last_id');
         $tab1 = $tab->fetchALL(PDO::FETCH_ASSOC);
         $last_id = $tab1[0]['last_id'];
         return $last_id;
+
+
+//on traite l'exception dans le catch
+    }
+
+//inserer une ligne avec une colonne en ai
+    function insert($colonnes, $donnees) {
+        $info = null;
+        $sql = 'insert into ' . $this->table . ' ( ';
+        $sql .= implode(',', $colonnes);
+        $sql .= ') values(';
+        //on récupère les données à mettre à jour dans $req['donnees'] et la clef primaire dans $req['cle']
+        //on met des quotes aux chaines de caractères
+        $cond = array();
+        foreach ($donnees as $v) {
+            if (!is_numeric($v)) {
+                $v = $this->db->quote($v);
+            }
+            $cond[] = $v;
+        }
+        $sql .= implode(',', $cond);
+
+        $sql .= ');';
+        try {
+            $pre = $this->db->prepare($sql);
+            $pre->execute();
+
+
+//on traite l'exception dans le catch
+        } catch (PDOException $e) {
+            $info = $e->getMessage();
+        }
+        return $info;
     }
 
 }

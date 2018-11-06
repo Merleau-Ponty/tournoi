@@ -1,9 +1,13 @@
-use TOURNOI;
-
+DROP TABLE IF EXISTS `SCORES`;
+DROP TABLE IF EXISTS `MATCHS`;
+DROP TABLE IF EXISTS `PHASES_FINALES`;
+DROP TABLE IF EXISTS `JOUEURS`;
+DROP TABLE IF EXISTS `POULES`;
+DROP TABLE IF EXISTS `TOURNOIS`;
 # -----------------------------------------------------------------------------
 #       TABLE : SCORES
 # -----------------------------------------------------------------------------
-DROP TABLE IF EXISTS `SCORES`;
+
 CREATE TABLE IF NOT EXISTS SCORES
  (
    ID_JOUEUR smallint(6) ,
@@ -17,7 +21,7 @@ CREATE TABLE IF NOT EXISTS SCORES
 # -----------------------------------------------------------------------------
 #       TABLE : JOUEURS
 # -----------------------------------------------------------------------------
-DROP TABLE IF EXISTS `JOUEURS`;
+
 CREATE TABLE IF NOT EXISTS JOUEURS
  (
    ID_JOUEUR smallint(6) NOT NULL AUTO_INCREMENT   PRIMARY KEY ,
@@ -37,7 +41,7 @@ CREATE TABLE IF NOT EXISTS JOUEURS
 # -----------------------------------------------------------------------------
 #       TABLE : MATCH
 # -----------------------------------------------------------------------------
-DROP TABLE IF EXISTS `MATCHS`;
+
 CREATE TABLE IF NOT EXISTS MATCHS
  (
    ID_MATCH smallint(6) NOT NULL AUTO_INCREMENT   PRIMARY KEY ,
@@ -54,7 +58,7 @@ CREATE TABLE IF NOT EXISTS MATCHS
 # -----------------------------------------------------------------------------
 #       TABLE : POULES
 # -----------------------------------------------------------------------------
-DROP TABLE IF EXISTS `POULES`;
+
 CREATE TABLE IF NOT EXISTS POULES
  (
    ID_POULE smallint(6) NOT NULL AUTO_INCREMENT   PRIMARY KEY,
@@ -66,12 +70,14 @@ CREATE TABLE IF NOT EXISTS POULES
 # -----------------------------------------------------------------------------
 #       TABLE : TOURNOIS
 # -----------------------------------------------------------------------------
-DROP TABLE IF EXISTS `TOURNOIS`;
+
 
 CREATE TABLE IF NOT EXISTS TOURNOIS
  (
    ID_TOURNOI smallint(6) NOT NULL AUTO_INCREMENT   PRIMARY KEY,
+   NOM VARCHAR(40),
    JEU VARCHAR(50),
+   DATELIMITE_INSCR DATE,
    DATEDEBUT DATETIME  ,
    DATEFIN DATETIME  ,
    PRIX FLOAT  
@@ -82,7 +88,7 @@ ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 # -----------------------------------------------------------------------------
 #       TABLE : PHASES_FINALES
 # -----------------------------------------------------------------------------
-DROP TABLE IF EXISTS `PHASES_FINALES`;
+
 CREATE TABLE IF NOT EXISTS PHASES_FINALES
  (
    ID_PHASE smallint(6) NOT NULL AUTO_INCREMENT   PRIMARY KEY ,

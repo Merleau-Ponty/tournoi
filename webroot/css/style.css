@@ -132,6 +132,7 @@ body{
     border-color:#00c0ff;
     border-style:solid;
     border-width:3px;
+
 }
 .arrondi{
     border-radius:60px;
@@ -139,4 +140,27 @@ body{
 .label
 {
     margin-left: 50%;
+}
+.listesecondaire{
+    margin-right: 75%;
+   
+}
+.btn {
+text-decoration: none;
+padding: 10px;
+font-family: arial;
+font-size: 1.2em;
+color: #FFFFFF;
+background-color: #00c0ff;
+border-radius: 25px;
+-webkit-border-radius: 24px;
+-moz-border-radius: 24px;
+opacity:0.9;
+}
+
+
+.btn:hover {
+    opacity:1;
+padding: 10px;
+transform : scale(1.1);
 }
