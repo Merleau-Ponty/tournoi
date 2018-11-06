@@ -19,3 +19,4 @@ include CORE.DS.'includes.php';
 $d=new Dispatcher();
 
 //phpinfo();
+?>

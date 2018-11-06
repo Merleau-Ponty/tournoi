@@ -7,11 +7,11 @@
  */
 
 /**
- * Description of Tournois
+ * Description of ListeS
  *
  * @author Maxime GLOD
  */
-class Tournois extends Model {
-    public $table='tournois';
+class ListeS  extends Model{
     //put your code here
+     var $table='joueurs where ETAT=0';
 }

@@ -1,4 +1,5 @@
- <h1 style="text-align: center;">Liste Principale</h1>
+<div class="arrondi">
+<h1 style="text-align: center;">Liste Principale</h1>
 
  <?php foreach ($joueurs as $ligne):?>
     
@@ -45,6 +46,7 @@ else {
 ?>
 <?php endforeach;?>
  
-       
+</div>    
+
 
 

@@ -7,11 +7,10 @@
  */
 
 /**
- * Description of Tournois
+ * Description of poule
  *
- * @author Maxime GLOD
+ * @author JULES
  */
-class Tournois extends Model {
-    public $table='tournois';
-    //put your code here
+class Poules extends Model{
+    var $table='poules';
 }
