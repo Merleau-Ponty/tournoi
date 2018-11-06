@@ -1,8 +1,8 @@
 <?php
 
-class Joueurs extends Model {
+class Matchs extends Model {
     
-    public $table = "joueurs";
+    public $table = "matchs";
     
     public function getTable(){
         return $this->table;
