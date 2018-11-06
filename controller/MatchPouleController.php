@@ -40,7 +40,7 @@ class MatchPouleController extends Controller {
          
         //Permet de lister les matchs dans une poule avec le pseudo des joueurs, leur scores et l'horaire des matchs.
         $modelmatch_poule = $this->loadModel('JoueursScoresMatch_poule');
-        $projection ='match_poule.numero, match_poule.id_match, match_poule.date_heure, GROUP_CONCAT(joueurs.PSEUDO) AS joueurs, GROUP_CONCAT(CONCAT(joueurs.PSEUDO, " ",IFNULL(scores.SCORE,0))) AS SCORES';
+        $projection ='match_poule.numero, match_poule.id_match, match_poule.date_heure, GROUP_CONCAT(joueurs.PSEUDO) AS joueurs, GROUP_CONCAT(CONCAT(joueurs.PSEUDO, " ",scores.SCORE)) AS SCORES';
         $groupby = 'match_poule.id_match';
         $condition = array('numero'=>$num_poule);
         $params = array( 'projection' => $projection,'groupby'=>$groupby,'conditions' => $condition);

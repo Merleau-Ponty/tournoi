@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-
 
 <!--On affiche les lignes de la table messages $d['messages']-->
 <h1>Poule n°<?=$num_poule?></h1>
@@ -21,7 +19,4 @@
     </tr>
     <?php endforeach;?>
 </table>
-=======
-ca marche
->>>>>>> origin/master
 
