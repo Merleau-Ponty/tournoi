@@ -101,7 +101,7 @@ class JoueurController extends Controller{
             
                 $listesecondaire=count($ligneS);
                        
-        if ( $listesecondaire>=16 && $listesecondaire%8==0 && $listeprincipale<64 ){
+        if ( $listesecondaire>=8 && $listesecondaire%8==0 && $listeprincipale<64 ){
             $d['info']="info dans le if";
              $condition=array("ETAT"=>0);
         //valeur a mettre à jour
