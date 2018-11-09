@@ -22,6 +22,7 @@ class TournController extends Controller {
         $modJoueurs = $this->loadModel('Joueurs');
         $d['joueurs'] = $modJoueurs->find();
         //$this->render('home');
+        $this->set($d);
     }
 
     public function acceuil_organisateur() {
