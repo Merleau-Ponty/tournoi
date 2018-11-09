@@ -14,13 +14,13 @@
 class PouleController extends Controller {
 
     public function creaPoule() {
-        $modTournoi = $this->loadModel('Tournoi');
+        $modTournoi = $this->loadModel('Tournois');
         $modPoule = $this->loadModel('Poules');
         if (isset($_POST['nb_joueurs'])) {
 
-            $joueur = $_POST['nb_joueurs'];
-            $poule = $_POST['nb_poule'];
-            $id_tournoi = $_POST['tournoi'];
+            $joueur = $_POST['joueurs'];
+            $poule = $_POST['poules'];
+            $id_tournoi = $_POST['tournois'];
             $id_poule = 1;
 
             while ($id_poule <= (int) $poule) {

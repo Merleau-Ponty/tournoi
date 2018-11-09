@@ -25,7 +25,10 @@ class JoueurController extends Controller{
         $d['pseudo'] = '';
         $d['tournoi'] = '';
          $d['info'] = '';
-        $inscription = false;
+        $score=0;
+        $victoires=0;
+        $etat=0;
+         $inscription = false;
          $valid = true;
         $modTournois= $this->loadModel('Tournois');
         $d['tournois']=$modTournois->find();
@@ -44,16 +47,16 @@ class JoueurController extends Controller{
 
             if (empty($d['nom'])) {
             $valid = false;
-                $d['info'] = $d['info'] . "<br>Le nom est obligatoire";
+                $d['info'] = $d['info'] . "<br>Le nom est obligatoire ! ";
             }
 
             if (empty($d['prenom'])) {
              $valid = false;
-                $d['info'] = $d['info'] . "<br>Le prénom est obligatoire";
+                $d['info'] = $d['info'] . "<br>Le prénom est obligatoire ! ";
             }
              if (empty($d['pseudo'])) {
              $valid = false;
-                $d['info'] = $d['info'] . "<br>Le pseudo est obligatoire";
+                $d['info'] = $d['info'] . "<br>Le pseudo est obligatoire ! ";
             }
              
 
@@ -61,15 +64,55 @@ class JoueurController extends Controller{
             if ($valid && $inscription) {
       
                 $modJoueurs = $this->loadModel('Joueurs');
-                $colones = array('ID_TOURNOI','NOM', 'PRENOM','PSEUDO');
-                $valeurs = array($d['tournoi'], $d['nom'], $d['prenom'], $d['pseudo']);
+                $colones = array('ID_TOURNOI','NOM', 'PRENOM','PSEUDO','ETAT','SCORE_TOTAL','NB_VICTOIRES');
+                $valeurs = array($d['tournoi'], $d['nom'], $d['prenom'], $d['pseudo'],$etat,$score,$victoires);
                 
                 $id = $modJoueurs->insertAI($colones, $valeurs);
-                $d['info'] .= 'Joueur n° ' . $id . ' bien inséré';
+                $d['info'] .= 'Merci pour votre inscription '.$d['pseudo'].' !';
             }
 
    
         }
         $this->set($d);
+        
+        
+             $d['info']='';
+ 
+   $modJoueurs= $this->loadModel('Joueurs');
+   
+   
+   
+//        $params = array();
+//        $projection = 'COUNT(ETAT)';
+//        $conditions = 'ETAT=1';
+//         $params = array( 'projection' => $projection, 'conditions' => $conditions);
+//         $d['lp'] =$modJoueurs->find($params);
+//        $this->set($d);
+//   echo ($d['lp']);
+//   
+//   
+      $modListeP= $this->loadModel('ListeP');
+            $ligneP = $modListeP->find('ETAT');
+                
+                $listeprincipale=count($ligneP);
+   
+                      $modListeS= $this->loadModel('ListeS');
+            $ligneS = $modListeS->find('ETAT');
+            
+                $listesecondaire=count($ligneS);
+                       
+        if ( $listesecondaire>=8 && $listesecondaire%8==0 && $listeprincipale<64 ){
+            $d['info']="info dans le if";
+             $condition=array("ETAT"=>0);
+        //valeur a mettre à jour
+        $donnees=array("ETAT"=>1);
+        //a mettre dans un seul tabnleau
+        $requete=array("donnees"=>$donnees,"conditions"=>$condition);
+        $d['info']=$modJoueurs->update($requete);
+        
+        $this->set($d);
+        }
+
+        
     }
 }
