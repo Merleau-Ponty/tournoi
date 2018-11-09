@@ -1,6 +1,6 @@
 <?php
 
-class Scores extends Model {
+class Score extends Model {
     
     public $table = "scores";
     
