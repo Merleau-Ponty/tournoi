@@ -15,33 +15,21 @@ class TournController extends Controller {
 
     //put your code here
     public function home() {
-<<<<<<< HEAD
         //$this->render('home');
     }
 
     public function liste_inscrit() {
         $modJoueurs = $this->loadModel('Joueurs');
         $d['joueurs'] = $modJoueurs->find();
-   //$this->render('home');
-=======
-   //$this->render('home');
-}
-    public function liste_inscrit() {     
-        
-        
-        
-        $modJoueurs= $this->loadModel('Joueurs');
-            $d['joueurs']=$modJoueurs->find();
-        $this->set($d);
->>>>>>> master
-}
- 
+        //$this->render('home');
+    }
 
     public function acceuil_organisateur() {
-        
+
         $this->render("acceuil_organisateur");
     }
-    public function creaTournoi(){
+
+    public function creaTournoi() {
         $modTournoi = $this->loadModel("Tournois");
         $d['tournoi'] = $modTournoi->find();
     }

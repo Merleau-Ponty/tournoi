@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <?php
 
 class Matchs extends Model {
@@ -10,16 +10,4 @@ class Matchs extends Model {
     }
 }
 ?>
-=======
-<?php
 
-class Matchs extends Model {
-    
-    public $table = "matchs";
-    
-    public function getTable(){
-        return $this->table;
-    }
-}
-?>
->>>>>>> origin/master
