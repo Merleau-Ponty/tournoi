@@ -142,12 +142,13 @@ class MatchpouleController extends Controller {
             //On charge le model JoueurPoule pour rechercher les joueurs qui sont dans la poule désignée
             $model = $this->loadModel('JoueurPoule');
             $projection = 'joueurs.ID_JOUEUR,joueurs.PSEUDO,poules.NUMERO';
-            $condition = array("poules.NUMERO"=>$num_poule_current);
+            $condition = array("poules.NUMERO"=>$num_poule_current,"joueurs.ID_TOURNOI"=>$_SESSION['idtournoi']);
             $params = array( 'projection' => $projection,'conditions'=>$condition);
             $result = $model->find($params); // Récupération des joueurs
-
+            //
             // On attribut à chaque joueurs tous les combats contre les joueurs de sa poule
             for ($i = 0; $i <= (count($result)-1);$i++){
+                
                 $joueur1 = $result[$i];
                 for ($y = $i+1; $y <= (count($result)-1);$y++){
                     $joueur2 = $result[$y];
@@ -166,14 +167,14 @@ class MatchpouleController extends Controller {
     //Liste les matchs de poules
     public function liste($num_poule){
         
-
-
+        // Définition du context
+        $_SESSION['idtournoi'] = 1;
          
         //Permet de lister les matchs dans une poule avec le pseudo des joueurs, leur scores et l'horaire des matchs.
         $modelmatch_poule = $this->loadModel('JoueurScoreMatch_poule');
         $projection ='match_poule.NUMERO, match_poule.ID_MATCH, match_poule.DATE_HEURE, GROUP_CONCAT(joueurs.PSEUDO SEPARATOR " vs ") AS JOUEURS, GROUP_CONCAT(CONCAT(joueurs.PSEUDO, " = ",IFNULL(scores.SCORE, "Pas de score")) SEPARATOR " | ") AS SCORES';
         $groupby = 'match_poule.ID_MATCH';
-        $condition = array('NUMERO'=>$num_poule);
+        $condition = array('NUMERO'=>$num_poule,'match_poule.ID_TOURNOI'=>$_SESSION['idtournoi']);
         $params = array( 'projection' => $projection,'groupby'=>$groupby,'conditions' => $condition);
         $listematch = $modelmatch_poule->find($params);
         $idmatch = 'match_poule.ID_MATCH';
