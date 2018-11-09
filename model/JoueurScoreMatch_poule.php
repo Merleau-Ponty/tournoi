@@ -1,6 +1,6 @@
 <?php
 
-class JoueursScoresMatch_poule extends Model {
+class JoueurScoreMatch_poule extends Model {
     
     public $table = "joueurs 
         INNER JOIN scores on scores.ID_JOUEUR = joueurs.ID_JOUEUR 
