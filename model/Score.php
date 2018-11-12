@@ -1,7 +1,11 @@
 <?php
 
-
-class Score extends Model{
-    //put your code here
-    public $table='scores';
+class Score extends Model {
+    
+    public $table = "scores";
+    
+    public function getTable(){
+        return $this->table;
+    }
 }
+?>

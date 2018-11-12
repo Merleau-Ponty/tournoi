@@ -1,7 +1,11 @@
 <?php
 
-
-class Match extends Model{
-    //put your code here
-    public $table='matchs';
+class Match extends Model {
+    
+    public $table = "matchs";
+    
+    public function getTable(){
+        return $this->table;
+    }
 }
+?>

@@ -92,12 +92,12 @@ $compt = 0;
                                     foreach ($match as $joueur):
                                         $j = $j + 1;
                                         if ($j % 2 != 0) {
-                                            echo '<span class="badge badge-pill badge-dark">' . $joueur->pseudo . "</span> VS ";
+                                            echo '<span class="badge badge-pill badge-dark">' . $joueur->PSEUDO . "</span> VS ";
                                         } else {
-                                            echo '<span class="badge badge-pill badge-dark">' . $joueur->pseudo;
+                                            echo '<span class="badge badge-pill badge-dark">' . $joueur->PSEUDO;
                                         }
                                         ?>
-                                        <input type="hidden" name="joueur_<?= $j ?>" value="<?= $joueur->id_joueur ?>"></input>
+                                        <input type="hidden" name="joueur_<?= $j ?>" value="<?= $joueur->ID_JOUEUR ?>"></input>
                                     <?php endforeach; ?>
                                     </p>
                                 </td>

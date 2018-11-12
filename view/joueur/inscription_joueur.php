@@ -3,17 +3,17 @@
     <div >
         <label for="nom">Nom</label>
         <br>
-        <input class="arrondi" type='text' name='nom' size='15' id='nom' />
+        <input class="arrondi" type='text' maxlength="50" name='nom' size='15' id='nom' />
     </div>
     <div>
         <label for="prenom">Prénom</label>
         <br>
-        <input class="arrondi" type='text' name='prenom' size='15' id='prenom' />
+        <input class="arrondi" type='text'maxlength="50" name='prenom' size='15' id='prenom' />
     </div>
     <div>
         <label for="pseudo">Pseudo</label>
         <br>
-        <input class="arrondi" type='text' name='pseudo' size='15' id='pseudo' />
+        <input class="arrondi" type='text' maxlength="15" name='pseudo' size='15' id='pseudo' />
     </div>
     <label for="tournoi">Tournoi</label>
     <br>

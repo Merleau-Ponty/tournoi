@@ -19,10 +19,10 @@ class TournController extends Controller {
     }
 
     public function liste_inscrit() {
-        $modJoueurs = $this->loadModel('Joueurs');
+        $modJoueurs = $this->loadModel('Joueur');
         $d['joueurs'] = $modJoueurs->find();
         //$this->render('home');
-        $this->set($d);
+		$this->set($d);
     }
 
     public function acceuil_organisateur() {
@@ -31,7 +31,7 @@ class TournController extends Controller {
     }
 
     public function creaTournoi() {
-        $modTournoi = $this->loadModel("Tournois");
+        $modTournoi = $this->loadModel("Tournoi");
         $d['tournoi'] = $modTournoi->find();
     }
 
