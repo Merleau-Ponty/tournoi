@@ -1,8 +1,8 @@
 
-<form class="form-horizontal" method="POST" action="">
-    <!-- Select Basic -->
+<form class="form-horizontal" method="POST" action="<?= BASE_URL ?>/poule/creaPoule">
+
     <div class="form-group">
-        <label class="col-md-4 control-label" for="nb_poule">Nombre de poule</label>
+        <label class="col-md-4 control-label" for="nb_poule">Nombre de poules</label>
         <div class="col-md-4">
             <select id="nb_poule" name="nb_poule" class="form-control">
                 <option value="2">2</option>
@@ -18,7 +18,7 @@
         </div>
     </div>
 
-    <!-- Select Basic -->
+
     <div class="form-group">
         <label class="col-md-4 control-label" for="nb_joueurs">Nombre de joueurs</label>
         <div class="col-md-4">
@@ -33,10 +33,10 @@
             </select>
         </div>
     </div>
-
-    <!-- Select Basic -->
+    
+    
     <div class="form-group">
-        <label class="col-md-4 control-label" for="nb_joueurs">Tournoi</label>
+        <label class="col-md-4 control-label" for="tournoi">Tournoi</label>
         <div class="col-md-4">
             <?php
             $vide = true;
@@ -58,12 +58,11 @@
         </div>
     </div>
 
-    <!-- Button (Double) -->
     <div class="form-group">
         <label class="col-md-4 control-label" for="Valider"></label>
         <div class="col-md-8">
             <?= $vide ? '' : '<button id="Valider" name="Valider" class="btn btn-success">Valider</button>' ?>
-            <button id="Annuler" name="Annuler" class="btn btn-danger">Annuler</button>
+           <button id="Valider" name="Valider" class="btn btn-danger">Valider</button>
         </div>
     </div>
 </form>
