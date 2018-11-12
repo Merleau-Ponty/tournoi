@@ -1,6 +1,6 @@
 <?php
 
-class Matchs extends Model {
+class Match extends Model {
     
     public $table = "matchs";
     

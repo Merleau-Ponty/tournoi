@@ -16,7 +16,7 @@ class JoueurController extends Controller{
    //$this->render('home');
 }
         public function inscription_joueur() {
-   $modJoueurs= $this->loadModel('Joueurs');
+   $modJoueurs= $this->loadModel('Joueur');
         $d['joueurs']=$modJoueurs->find();
         $this->set($d);
 
@@ -30,7 +30,7 @@ class JoueurController extends Controller{
         $etat=0;
          $inscription = false;
          $valid = true;
-        $modTournois= $this->loadModel('Tournois');
+        $modTournois= $this->loadModel('Tournoi');
         $d['tournois']=$modTournois->find();
 //cas ou le formulaire a été soumis
         if (isset($_POST['nom'])) {
@@ -63,7 +63,7 @@ class JoueurController extends Controller{
 //on prépare la requête SQL si les données sont valides
             if ($valid && $inscription) {
       
-                $modJoueurs = $this->loadModel('Joueurs');
+                $modJoueurs = $this->loadModel('Joueur');
                 $colones = array('ID_TOURNOI','NOM', 'PRENOM','PSEUDO','ETAT','SCORE_TOTAL','NB_VICTOIRES');
                 $valeurs = array($d['tournoi'], $d['nom'], $d['prenom'], $d['pseudo'],$etat,$score,$victoires);
                 
@@ -78,7 +78,7 @@ class JoueurController extends Controller{
         
              $d['info']='';
  
-   $modJoueurs= $this->loadModel('Joueurs');
+   $modJoueurs= $this->loadModel('Joueur');
    
    
    
