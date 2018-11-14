@@ -1,14 +1,17 @@
-<style>
-    
-    h1{
-        color: red;
-    }
-    
-</style>
-
- <div >
-        <label for="nom_user">Nom</label><input type='text' name='nom_user' size='15' id='nom_user' value="<?= $nom_user ?>" />
-    </div>
-    <div >
-        <label for="message">Message</label><textarea  name='message' id="message" ><?= $message ?></textarea>
-    </div>
+<body id="appli">
+    <p id="label">
+        <span id="inscription_logol"><a href="<?= BASE_URL ?>/tourn/creaTournoi" style="text-decoration:none; color: black;">Création de tournoi</span></a> 
+    <span id="liste_joueurl"><a href="<?= BASE_URL ?>/poule/creaPoule" style="text-decoration:none; color: black;">Création des poules</span></a>
+<span id="liste_joueurl"><a href="<?= BASE_URL ?>/poule/creaPoule" style="text-decoration:none; color: black;">Liste des joueurs</span></a>
+</p>
+<p id="choixjoueur">
+    <span id="inscription_logo">    
+        <a href="<?= BASE_URL ?>/tourn/creaTournoi" style="text-decoration:none; color: black;"><img src="<?= BASE_SITE ?>/img/Capture1.PNG" width="200" height="200" alt=""/></a>
+    </span>
+    <span id="liste_joueur">
+        <a href="<?= BASE_URL ?>/poule/creaPoule" style="text-decoration:none; color: black;"><img src="<?= BASE_SITE ?>/img/Capture3.PNG" width="200" height="200" alt=""/></a>
+    </span>
+    <span id="liste_joueur">
+        <a href="<?= BASE_URL ?>/poule/liste" style="text-decoration:none; color: black;"><img src="<?= BASE_SITE ?>/img/Capture2.PNG" width="200" height="200" alt=""/></a>
+    </span>
+</p>

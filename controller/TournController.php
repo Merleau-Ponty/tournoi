@@ -11,17 +11,32 @@
  *
  * @author Maxime GLOD
  */
-class TournController extends Controller{
+class TournController extends Controller {
+
     //put your code here
     public function home() {
-   //$this->render('home');
-}
-    public function liste_inscrit() {     
-        
-        
-        
-        $modJoueurs= $this->loadModel('Joueurs');
-            $d['joueurs']=$modJoueurs->find();
-        $this->set($d);
-}
+        //$this->render('home');
+    }
+
+    public function liste_inscrit() {
+        $modJoueurs = $this->loadModel('Joueur');
+        $d['joueurs'] = $modJoueurs->find();
+        //$this->render('home');
+		$this->set($d);
+    }
+
+    public function acceuil_organisateur() {
+        $this->render("acceuil_organisateur");
+    }
+
+    /* public function creaTournoi() {
+      $modTournoi = $this->loadModel("Tournois");
+      $d['tournoi'] = $modTournoi->find();
+      } */
+
+    public function creaTournoi() {
+        $modTournoi = $this->loadModel("Tournoi");
+        $d['tournoi'] = $modTournoi->find();
+    }
+
 }

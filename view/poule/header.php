@@ -1,4 +1,4 @@
-<!doctype html>fjdsksdgnjkslgdjsdgklsdg,gsldk
+<!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
@@ -6,7 +6,7 @@
 <link href="webroot/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <div id="header">
-<h1 id="bandeau"><img id="ea" src="webroot/img/ea.png" width="80" height="80" alt="Electronic Arts"/><a href="accueil_visiteur.php" style="text-decoration:none; color: white;">Gestion Tournoi Jeux Vidéos</a><a href="acceuil_organisateur.php"><img id="login" src="webroot/img/logo.png" width="190" height="80" alt=""/></a></h1>
+    <h1 id="bandeau"><img id="ea" src="webroot/img/ea.png" width="80" height="80" alt="Electronic Arts"/><a href="../../tourn/accueil_visiteur.php" style="text-decoration:none; color: white;">Gestion Tournoi Jeux Vidéos</a><a href="acceuil_organisateur.php"><img id="login" src="webroot/img/logo.png" width="190" height="80" alt=""/></a></h1>
 </div>
 <body>
 
