@@ -1,11 +1,5 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of TournController
  *
@@ -13,19 +7,19 @@
  */
 class TournController extends Controller {
 
-    //put your code here
     public function home() {
         //$this->render('home');
     }
 
-    public function liste_inscrit() {
-        $modJoueurs = $this->loadModel('Joueur');
-        $condition = array( "ID_TOURNOI" => $_SESSION['idtournoi']);
+    //Méthode pour lister les inscrits
 
-        $params['conditions']= $condition;
-        $d['joueurs'] = $modJoueurs->find($params);
-        //$this->render('home');
-		$this->set($d);
+    public function liste_inscrit() {
+
+        $modJoueurs = $this->loadModel('Joueur'); //On charge le modèle de Joueur
+        $condition = array("ID_TOURNOI" => $_SESSION['idtournoi']); //On récupère dans la session l'id du tournoi pour afficher la liste correspondante à l'id de la session
+        $params['conditions'] = $condition;
+        $d['joueurs'] = $modJoueurs->find($params); //On liste les joueurs selon nos conditions
+        $this->set($d);
     }
 
     public function acceuil_organisateur() {

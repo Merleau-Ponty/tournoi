@@ -1,11 +1,5 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of JoueurController
  *
@@ -17,12 +11,16 @@ class JoueurController extends Controller {
         //$this->render('home');
     }
 
+//Inscription d'un joueur
+
     public function inscription_joueur() {
 
-        $modJoueurs = $this->loadModel('Joueur');
-        $d['joueurs'] = $modJoueurs->find();
+        $modJoueurs = $this->loadModel('Joueur'); //Charger le modèle de Joueur
+        $d['joueurs'] = $modJoueurs->find(); //Mettre les données dans un tableau
         $this->set($d);
-
+        
+        //Initialisation des champs
+        
         $d['nom'] = '';
         $d['prenom'] = '';
         $d['pseudo'] = '';
@@ -33,9 +31,12 @@ class JoueurController extends Controller {
         $etat = 0;
         $inscription = false;
         $valid = true;
-        $modTournois = $this->loadModel('Tournoi');
-        $d['tournois'] = $modTournois->find();
-//cas ou le formulaire a été soumis
+
+        $modTournois = $this->loadModel('Tournoi'); //Charger le modèle de Tournoi
+        $d['tournois'] = $modTournois->find(); //Mettre les données dans un tableau
+        
+        //cas ou le formulaire a été soumis
+        
         if (isset($_POST['nom'])) {
             $d['nom'] = $_POST['nom'];
             $d['prenom'] = $_POST['prenom'];
@@ -46,7 +47,7 @@ class JoueurController extends Controller {
                 $inscription = true;
             }
 
-//validation des données
+            //validation des données du formulaire d'inscription
 
             if (empty($d['nom'])) {
                 $valid = false;
@@ -63,15 +64,15 @@ class JoueurController extends Controller {
             }
 
 
-//on prépare la requête SQL si les données sont valides
+            //on prépare la requête SQL si les données sont valides
             if ($valid && $inscription) {
 
-                $modJoueurs = $this->loadModel('Joueur');
+                $modJoueurs = $this->loadModel('Joueur'); //Charger le modèle de Joueur
                 $colones = array('ID_TOURNOI', 'NOM', 'PRENOM', 'PSEUDO', 'ETAT', 'SCORE_TOTAL', 'NB_VICTOIRES');
                 $valeurs = array($d['tournoi'], $d['nom'], $d['prenom'], $d['pseudo'], $etat, $score, $victoires);
 
                 $id = $modJoueurs->insertAI($colones, $valeurs);
-                $d['info'] .= 'Merci pour votre inscription ' . $d['pseudo'] . ' !';
+                $d['info'] = 'Merci pour votre inscription ' . $d['pseudo'] . ' !';
             }
         }
         $this->set($d);
@@ -79,56 +80,26 @@ class JoueurController extends Controller {
 
         $d['info'] = '';
 
-        $modJoueur = $this->loadModel('Joueur');
-
-
-
-//        $params = array();
-//        $projection = 'COUNT(ETAT)';
-//        $conditions = 'ETAT=1';
-//         $params = array( 'projection' => $projection, 'conditions' => $conditions);
-//         $d['lp'] =$modJoueurs->find($params);
-//        $this->set($d);
-//   echo ($d['lp']);
-//   
-//   
-//   
-//   
-//   
-//   
-//   
-
-
-
-
-
-
-
         $Joueur = $this->loadModel('Joueur');
-        
-      
-          
-            
-            
-        $p = 1;
-        
+
+        $p = 1; //Etat du joueur de liste principale
+
         $condition = array("ETAT" => $p, "ID_TOURNOI" => $d['tournoi']);
-
-        $params['conditions']= $condition;
-
+        $params['conditions'] = $condition;
         $ligneP = $Joueur->find($params);
-        $listeprincipale = count($ligneP);
+        $listeprincipale = count($ligneP); //On compte le nombre de joueur en liste Principale
 
- 
-        $s = 0;
+
+        $s = 0; //Etat du joueur de liste secondaire
+
         $condition2 = array("ETAT" => $s, "ID_TOURNOI" => $d['tournoi']);
-        $params2['conditions']= $condition2;
+        $params2['conditions'] = $condition2;
         $ligneS = $Joueur->find($params2);
-        $listesecondaire = count($ligneS);
-
-
-        if ($listesecondaire >= 8 && $listesecondaire % 8 == 0 && $listeprincipale < 64) {
-            $d['info'] = "info dans le if";
+        $listesecondaire = count($ligneS); //On compte le nombre de joueur en liste Secondaire
+        
+        //Mise à jour de l'état des joueurs lors de l'inscription d'un nouveau joueur
+        
+        if ($listesecondaire >= 8 && $listesecondaire % 8 == 0 && $listeprincipale < 64) { //Si le nombre de joueurs en liste secondaire est divisible par 8 et compris entre 8 et 64, alors on les met en liste principale si il reste de la place
             $condition = array("ETAT" => 0, "ID_TOURNOI" => $d['tournoi']);
             //valeur a mettre à jour
             $donnees = array("ETAT" => 1, "ID_TOURNOI" => $d['tournoi']);
