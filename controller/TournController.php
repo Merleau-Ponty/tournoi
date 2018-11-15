@@ -20,7 +20,10 @@ class TournController extends Controller {
 
     public function liste_inscrit() {
         $modJoueurs = $this->loadModel('Joueur');
-        $d['joueurs'] = $modJoueurs->find();
+        $condition = array( "ID_TOURNOI" => $_SESSION['idtournoi']);
+
+        $params['conditions']= $condition;
+        $d['joueurs'] = $modJoueurs->find($params);
         //$this->render('home');
 		$this->set($d);
     }

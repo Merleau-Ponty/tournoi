@@ -7,11 +7,10 @@
  */
 
 /**
- * Description of ListeP
+ * Description of ListeJoueurs
  *
  * @author Maxime GLOD
  */
-class ListeP  extends Model{
-    //put your code here
-     var $table='joueurs where ETAT=1';
+class ListeJoueurs extends Model{
+    var $table='joueur';
 }
