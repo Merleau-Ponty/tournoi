@@ -1,5 +1,5 @@
 
-<form class="form-horizontal" method="POST" action="<?= BASE_URL ?>/poule/creaPoule">
+<form class="form-horizontal" method="POST" action="<?= BASE_URL ?>/tourn/home">
 
     <div class="form-group">
         <label class="col-md-4 control-label" for="nb_poule">Nombre de poules</label>

@@ -17,26 +17,34 @@ class TournController extends Controller {
     public function home() {
         //$this->render('home');
     }
-
+    
+/* 
     public function liste_inscrit() {
         $modJoueurs = $this->loadModel('Joueur');
         $d['joueurs'] = $modJoueurs->find();
         //$this->render('home');
 		$this->set($d);
-    }
-
-    public function acceuil_organisateur() {
-        $this->render("acceuil_organisateur");
-    }
-
-    /* public function creaTournoi() {
-      $modTournoi = $this->loadModel("Tournois");
-      $d['tournoi'] = $modTournoi->find();
-      } */
+    }*/
 
     public function creaTournoi() {
         $modTournoi = $this->loadModel("Tournoi");
         $d['tournoi'] = $modTournoi->find();
+    }
+    
+    // Choix du tournoi
+    
+    public function choix_tournoi(){
+        $modTournoi = $this->loadModel("Tournoi");
+        $d['tournois'] = $modTournoi->find();
+        $this->set($d);
+    }
+    
+    // Mise en session de l'id tournoi et redirection vers la gestion de ce tournoi
+    
+    public function tourn_valid($id_tournoi){
+        $_SESSION['idtournoi'] = $id_tournoi;
+        $this->redirect('/matchpoule/create/1');
+        exit;
     }
 
 }

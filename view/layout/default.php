@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html>
 <head>
@@ -15,10 +14,20 @@
 <h1 id="bandeau"><img id="ea" src="<?= BASE_SITE ?>/img/ea.png" width="80" height="80" alt="Electronic Arts"/><a href="home" style="text-decoration:none; color: white;">Gestion Tournoi Jeux Vidéos</a><a href="acceuil_organisateur"><img id="login" src="<?= BASE_SITE ?>/img/logo.png" width="190" height="80" alt=""/></a></h1>
 </div>
 <body>
-
-</body>
-</html>
-<!doctype html>
+<?php
+    // liste des views où il ne faut pas afficher le menu
+    $view_sans_menu = array("creaPoule","creaTournoi","home","inscription_joueur","choix_tournoi");
+    $affich_menu = TRUE;
+    // vérification que la vue qui va être chargé ne soit pas dans la liste
+    foreach ($view_sans_menu as $vsm) {
+        if (strcmp($vsm,$view) != 0){
+            $affich_menu = FALSE;
+        }
+    }
+    if ($affich_menu == TRUE){
+        include 'menu.php';
+    }
+?>
  
 
     
@@ -27,4 +36,7 @@
                     <?= $content_for_layout ?>
         
 </body>
+<footer>
+    <a href="<?= BASE_URL ?>/tourn/home">Retour au menu principal</a>
+</footer>
 </html>
