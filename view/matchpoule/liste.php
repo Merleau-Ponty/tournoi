@@ -25,10 +25,12 @@
                         <th>Horaire</th>
                         <th>Joueurs</th>
                         <th>Scores</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
+                    $_SESSION['redirect']="/matchpoule/liste/$num_poule";
                     foreach ($match_poule as $ligne):
                         ?>
                         <tr>
@@ -36,6 +38,7 @@
                             <td><?= $ligne->DATE_HEURE; ?></td>
                             <td><?= $ligne->JOUEURS; ?></td>
                             <td><?= $ligne->SCORES; ?></td>
+                            <td><a href="<?= BASE_URL ?>/match/score/<?= $ligne->ID_MATCH; ?>"><button type="button" class="btn btn-primary">Modifier les scores</button></a></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

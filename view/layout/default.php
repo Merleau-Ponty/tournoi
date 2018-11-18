@@ -11,7 +11,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </head>
 <div id="header">
-<h1 id="bandeau"><img id="ea" src="<?= BASE_SITE ?>/img/ea.png" width="80" height="80" alt="Electronic Arts"/><a href="home" style="text-decoration:none; color: white;">Gestion Tournoi Jeux Vidéos</a><a href="acceuil_organisateur"><img id="login" src="<?= BASE_SITE ?>/img/logo.png" width="190" height="80" alt=""/></a></h1>
+<h1 id="bandeau"><img id="ea" src="<?= BASE_SITE ?>/img/ea.png" width="80" height="80" alt="Electronic Arts"/><a href="<?= BASE_URL ?>/tourn/home" style="text-decoration:none; color: white;">Gestion Tournoi Jeux Vidéos</a></h1>
 </div>
 <body>
 <?php
@@ -20,7 +20,7 @@
     $affich_menu = TRUE;
     // vérification que la vue qui va être chargé ne soit pas dans la liste
     foreach ($view_sans_menu as $vsm) {
-        if (strcmp($vsm,$view) != 0){
+        if (strcmp($vsm,$view) == 0){
             $affich_menu = FALSE;
         }
     }
@@ -36,7 +36,4 @@
                     <?= $content_for_layout ?>
         
 </body>
-<footer>
-    <a href="<?= BASE_URL ?>/tourn/home">Retour au menu principal</a>
-</footer>
 </html>

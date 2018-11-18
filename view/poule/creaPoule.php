@@ -1,5 +1,6 @@
-
-<form class="form-horizontal" method="POST" action="<?= BASE_URL ?>/tourn/home">
+<h1>Création des poules du tournoi <?=$_SESSION['nom']?></h1>
+<?php unset($_SESSION['nom']); ?>
+<form class="form-horizontal" method="POST" action="<?= BASE_URL ?>/poule/creaPoule">
 
     <div class="form-group">
         <label class="col-md-4 control-label" for="nb_poule">Nombre de poules</label>
@@ -33,36 +34,10 @@
             </select>
         </div>
     </div>
-    
-    
-    <div class="form-group">
-        <label class="col-md-4 control-label" for="tournoi">Tournoi</label>
-        <div class="col-md-4">
-            <?php
-            $vide = true;
-            $option = "";
-            foreach ($tournoi as $tour) {
-                if (isset($tour->NOM)) {
-                    $option = $option . '<option value="' . $tour->ID_TOURNOI . '">' . $tour->NOM . '</option>';
-                    $vide = false;
-                }
-            }
-            if ($vide !== true) {
-                echo '<select id="tournoi" name="tournoi" class="form-control">';
-                echo $option;
-                echo '</select>';
-            } else {
-                echo 'Aucun tournoi disponible !!';
-            }
-            ?>
-        </div>
-    </div>
-
     <div class="form-group">
         <label class="col-md-4 control-label" for="Valider"></label>
         <div class="col-md-8">
-            <?= $vide ? '' : '<button id="Valider" name="Valider" class="btn btn-success">Valider</button>' ?>
-           <button id="Valider" name="Valider" class="btn btn-danger">Valider</button>
+           <button id="Valider" name="Valider" class="btn">Valider</button>
         </div>
     </div>
 </form>

@@ -5,14 +5,29 @@ class MatchpouleController extends Controller {
     public function create($num_poule_current){
         
         // Définition du context
-        $_SESSION['idtournoi'] = 1;
-        $_SESSION['datedebut'] = '2016-10-20 12:12:00';
+        $modTournoi = $this->loadModel('Tournoi');
+        $modPoule = $this->loadModel('Poule');
+        $projection = 'DATEDEBUT,DATEFIN';
+        $conditions = array('ID_TOURNOI'=>$_SESSION['idtournoi']);
+        $param = array('projection'=>$projection,'conditions'=>$conditions);
+        $result = $modTournoi->find($param);
+        foreach ($result as $ligne){
+            $_SESSION['datedebut'] = $ligne->DATEDEBUT;
+            $_SESSION['datefin'] = $ligne->DATEFIN;
+        }
         $tmp = explode(' ', $_SESSION['datedebut']);
         $_SESSION['date'] = $tmp[0];
         $_SESSION['time'] = $tmp[1];
-        $_SESSION['datefin'] = '2020-10-20 12:12:00';
         
-        //unset($_SESSION['poule_created']);
+        $projection = 'ID_POULE';
+        $conditions = array('ID_TOURNOI'=>$_SESSION['idtournoi'],'NUMERO'=>$num_poule_current);
+        $param = array('projection'=>$projection,'conditions'=>$conditions);
+        $result = $modPoule->find($param);            
+            
+        foreach ($result as $id){
+            $id_poule=intval($id->ID_POULE);
+        }
+        
         // Pour charger les joueurs d'une poule et renvoie un tableau de matchs
         $d['num_poule'] = $num_poule_current;
                
@@ -43,7 +58,7 @@ class MatchpouleController extends Controller {
                 // On récupère l'horaire
                 $datetime = $_POST['date_'.$i].' '.$_POST['time_'.$i];
                 
-                // On test si les champs;ont bien étaient saisies
+                // On test si les champs ont bien été saisies
                 if ($_POST['date_'.$i] != '' and $_POST['time_'.$i] != ''){
                     // Vérification des horaires
                     // On passe par l'objet DateTime pour pouvoir les comparer plus facilement
@@ -64,7 +79,7 @@ class MatchpouleController extends Controller {
                 foreach ($matchs as $match){
                     //Matchs
                     $colonnes = array('ID_TOURNOI','ID_POULE','TYPE_MATCH','DATE_HEURE');
-                    $values = array($_SESSION['idtournoi'],$num_poule_current,'0',$match['date_heure']);
+                    $values = array($_SESSION['idtournoi'],$id_poule,'0',$match['date_heure']);
                     $id_match = $modelMatchs->insertAI($colonnes,$values);
                     //Scores
                     $colonnes = array('ID_JOUEUR','ID_MATCH');
@@ -140,9 +155,9 @@ class MatchpouleController extends Controller {
         } else {
             
             //On charge le model JoueurPoule pour rechercher les joueurs qui sont dans la poule désignée
-            $model = $this->loadModel('JoueurPoule');
-            $projection = 'joueurs.ID_JOUEUR,joueurs.PSEUDO,poules.NUMERO';
-            $condition = array("poules.NUMERO"=>$num_poule_current,"joueurs.ID_TOURNOI"=>$_SESSION['idtournoi']);
+            $model = $this->loadModel('Joueur');
+            $projection = 'ID_JOUEUR,PSEUDO';
+            $condition = array("ID_POULE"=>$id_poule,"ID_TOURNOI"=>$_SESSION['idtournoi']);
             $params = array( 'projection' => $projection,'conditions'=>$condition);
             $result = $model->find($params); // Récupération des joueurs
             //
@@ -166,9 +181,6 @@ class MatchpouleController extends Controller {
     
     //Liste les matchs de poules
     public function liste($num_poule){
-        
-        // Définition du context
-        $_SESSION['idtournoi'] = 1;
          
         //Permet de lister les matchs dans une poule avec le pseudo des joueurs, leur scores et l'horaire des matchs.
         $modelmatch_poule = $this->loadModel('JoueurScoreMatch_poule');

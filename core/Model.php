@@ -163,7 +163,7 @@ class Model {
             $cle[] = "$k = $v ";
         }
 
-        $sql .= implode('AND', $cle);
+        $sql .= implode(' AND ', $cle);
 
         try {
             $pre = $this->db->prepare($sql);

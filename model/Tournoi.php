@@ -1,16 +1,7 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+class Tournoi extends Model {
 
-/**
- * Description of poule
- *
- * @author JULES
- */
-class Tournoi extends Model{
-    var $table='tournois';
+    var $table = 'tournois';
+
 }

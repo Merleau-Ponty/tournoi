@@ -7,13 +7,6 @@
  */
  class matchController extends Controller  {
      
-    //lister les matchs
-    public function liste() {
-        $modMatch = $this->loadModel('match');
-        $d['matchs'] = $modMatch->find();
-        $this->set($d);
-    }
-     
      public function score($id_match) {
         
         if (isset($_POST["Score_1"])){
@@ -27,7 +20,9 @@
             $conditions = array(" ID_MATCH"=>$id_match," ID_JOUEUR"=>$_POST["J_2"]);
             $params = array('donnees' => $donnes,'conditions' =>$conditions);
             $modScore->update($params);
-            $this->redirect("/match/liste");
+            $redirect = $_SESSION['redirect'];
+            unset($_SESSION['redirect']);
+            $this->redirect($redirect);
             exit();
         }
         else {

@@ -1,4 +1,4 @@
-<p>Création de tournoi</p>
+<h1>Création de tournoi</h1>
 
 <?php
     if(isset($info)){
@@ -6,7 +6,7 @@
     }
 ?>
 
-<form  name="monForm" method="post" class="form-horizontal" action="<?= BASE_URL ?>/poule/creaPoule" >
+<form  name="monForm" method="post" class="form-horizontal" action="<?= BASE_URL ?>/tourn/creaTournoi" >
 <!-- Text input-->
 <div class="form-group">
   <label class="col-md-4 control-label" for="nomTournoi">Nom du tournoi </label>  
@@ -67,8 +67,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="Validation"></label>
   <div class="col-md-8">
-    <button class="btn" type='submit' name='creatournoi' value='creer'> Créer</button>
-    <button id="Réinitialisation" name="Réinitialisation" class="btn btn-danger">Réinitialiser</button>
+    <button class="btn btn-primary" type='submit' name='creatournoi' value='creer'> Créer</button>
   </div>
 </div>
 

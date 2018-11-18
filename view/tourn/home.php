@@ -17,4 +17,4 @@
         <a href="<?= BASE_URL ?>/tourn/choix_tournoi" style="text-decoration:none; color: black;"><img src="<?= BASE_SITE ?>/img/Capture3.PNG" width="200" height="210" alt=""/></a>
     </span>
     </p>
-    
+ 

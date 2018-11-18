@@ -1,3 +1,0 @@
-<h3 style="text-decoration: underline;">Page d'accueil du ppe3</h3>
-
-Une page d'accueil vu que je ne savais pas quoi mettre ici...
