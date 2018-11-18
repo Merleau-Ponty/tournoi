@@ -1,5 +1,4 @@
 <?php
-
 class Match extends Model {
     
     public $table = "matchs";
