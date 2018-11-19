@@ -19,21 +19,21 @@ class PouleController extends Controller {
         $modPoule = $this->loadModel('Poule');
 
         //Traitement
-        if (isset($_POST['nb_joueurs'])) {
+        if (isset($_POST['nb_poule'])) {
 
             $poule = $_POST['nb_poule'];
-            $ID_TOURNOI = $_POST['tournoi'];
-            $d['info'] = '';
             $ID_POULE = 1;
-
-
+            
             while ($ID_POULE <= (int) $poule) {
                 $modPoule->insertAI(['NUMERO', 'ID_TOURNOI'], [$ID_POULE, $_SESSION['id']]);
 
                 $ID_POULE = $ID_POULE + 1;
             }
             unset($_SESSION['id']);
+            $_SESSION['info'] = 'Les poules du tournoi "'.$_SESSION['nom'].'" ont bien été crées success';
+            unset($_SESSION['nom']);
             $this->redirect('/tourn/home');
+            exit();
         }
     }
 

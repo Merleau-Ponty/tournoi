@@ -53,7 +53,6 @@
         <input class="btn" type='submit' name='inscription' value='Inscription' />
     </div>
 </form>
-<p style="text-align: center;"><strong><?= $info ?></strong></p>
 
 <script type="text/javascript" language="javascript">
 

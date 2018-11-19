@@ -1,5 +1,4 @@
 <h1>Création des poules du tournoi <?=$_SESSION['nom']?></h1>
-<?php unset($_SESSION['nom']); ?>
 <form class="form-horizontal" method="POST" action="<?= BASE_URL ?>/poule/creaPoule">
 
     <div class="form-group">

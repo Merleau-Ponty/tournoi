@@ -37,6 +37,13 @@ class PoulController extends Controller
             $modJoueur->update($param);
         }
         $d['poule_joueur'] = $poule_joueur;
+        
+        if($num_poule != 8){
+            $_SESSION['info'] = 'Il y a un problème dans la composition des poules, veuillez consulter l\'administrateur ! danger';
+        } else {
+            $_SESSION['info'] = 'La composition des poules a bien été effectuée, voici un récapitulatif : success';
+        }
+        
         $this->set($d);
         //find avec les joueurs et le numéro de tournoi pour avoir le numéro renseigné
         //affichage

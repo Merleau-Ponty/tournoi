@@ -16,7 +16,7 @@ class MatchFinController extends Controller {
         $d['time'] = '';
         $d['joueur1']='';
         $d['joueur2'] = '';
-        $d['info'] = '';
+        $info = '';
         
         if (isset($_POST['date'])) {
             $d['date'] = $_POST['date'];
@@ -26,20 +26,20 @@ class MatchFinController extends Controller {
             
             if (empty($d['date'])) {
             $valid = false;
-                $d['info'] = $d['info'] . "<br>La date est obligatoire ! ";
+                $info = $info . "La date est obligatoire !<br>";
             }
             if (empty($d['time'])) {
             $valid = false;
-                $d['info'] = $d['info'] . "<br>L'heure est obligatoire ! ";
+                $info = $info . "L'heure est obligatoire !<br>";
             }
 
             if (empty($d['joueur1'])) {
              $valid = false;
-                $d['info'] = $d['info'] . "<br>Vous devez entrer le joueur n°1 ! ";
+                $info = $info . "Vous devez entrer le joueur n°1 !<br>";
             }
              if (empty($d['joueur2'])) {
              $valid = false;
-                $d['info'] = $d['info'] . "<br>Vous devez entrer le joueur n°2 ! ";
+                $info = $info . "Vous devez entrer le joueur n°2 !<br>";
             }
             
             
@@ -50,7 +50,7 @@ class MatchFinController extends Controller {
                 $valeurMatch = array($_SESSION['idtournoi'],'1',3, $d['date']);
                 
                 $id = $modMatch->insertAI($coloneMatch, $valeurMatch);
-                $d['info'] .= 'Le match de finale a été crée !';
+                $info .= 'Le match de finale a été crée !';
                 
                 $modScore = $this->loadModel('Score');
                 $colones = array('ID_MATCH','ID_JOUEUR');
@@ -58,9 +58,12 @@ class MatchFinController extends Controller {
                 $modScore->insert($colones, $valeurs);
                 $valeurs = array($id,$_POST['joueur2']);
                 $modScore->insert($colones, $valeurs);
+                
+                $_SESSION['info'] = 'Le match de finale a bien été créé success';
+                $this->redirect('/matchfin/listePH');
+                exit();
             }
-            
-   
+            $_SESSION['info'] = $info . ' danger';
         }
         $this->set($d);
         
@@ -83,7 +86,7 @@ class MatchFinController extends Controller {
         $d['joueur2'] = '';
         $d['joueur3'] = '';
         $d['joueur4'] = '';
-        $d['info'] = '';
+        $info = '';
         
         if (isset($_POST['date'])) {
             $d['date'] = $_POST['date'];
@@ -95,28 +98,28 @@ class MatchFinController extends Controller {
             
             if (empty($d['date'])) {
             $valid = false;
-                $d['info'] = $d['info'] . "<br>La date est obligatoire ! ";
+                $info = $info . "La date est obligatoire !<br>";
             }
             if (empty($d['time'])) {
             $valid = false;
-                $d['info'] = $d['info'] . "<br>L'heure est obligatoire ! ";
+                $info = $info . "L'heure est obligatoire !<br>";
             }
 
             if (empty($d['joueur1'])) {
              $valid = false;
-                $d['info'] = $d['info'] . "<br>Vous devez entrer le joueur n°1 ! ";
+                $info = $info . "Vous devez entrer le joueur n°1 !<br>";
             }
              if (empty($d['joueur2'])) {
              $valid = false;
-                $d['info'] = $d['info'] . "<br>Vous devez entrer le joueur n°2 ! ";
+                $info = $info . "Vous devez entrer le joueur n°2 !<br>";
             }
             if (empty($d['joueur3'])) {
              $valid = false;
-                $d['info'] = $d['info'] . "<br>Vous devez entrer le joueur n°3 ! ";
+                $info = $info . "Vous devez entrer le joueur n°3 !<br>";
             }
             if (empty($d['joueur4'])) {
              $valid = false;
-                $d['info'] = $d['info'] . "<br>Vous devez entrer le joueur n°4 ! ";
+                $info = $info . "Vous devez entrer le joueur n°4 !<br>";
             }
             
             
@@ -143,10 +146,11 @@ class MatchFinController extends Controller {
                 $valeurs = array($id,$_POST['joueur4']);
                 $modScore->insert($colones, $valeurs);
                 
-                $d['info'] .= 'Les matchs de demi-finale ont été crées !';
+                $_SESSION['info'] = 'Les matchs de demi-finale ont bien été créés success';
+                $this->redirect('/matchfin/listePH');
+                exit();
             }
-
-   
+            $_SESSION['info'] = $info.' danger';
         }
         $this->set($d);
         
@@ -173,7 +177,7 @@ class MatchFinController extends Controller {
         $d['joueur6'] = '';
         $d['joueur7'] = '';
         $d['joueur8'] = '';
-        $d['info'] = '';
+        $info = '';
         
         if (isset($_POST['date'])) {
             $d['date'] = $_POST['date'];
@@ -190,45 +194,45 @@ class MatchFinController extends Controller {
             
             if (empty($d['date'])) {
             $valid = false;
-                $d['info'] = $d['info'] . "<br>La date est obligatoire ! ";
+                $info = $info . "La date est obligatoire !<br>";
             }
             
             if (empty($d['time'])) {
             $valid = false;
-                $d['info'] = $d['info'] . "<br>L'heure est obligatoire ! ";
+                $info = $info . "L'heure est obligatoire !<br>";
             }
 
             if (empty($d['joueur1'])) {
              $valid = false;
-                $d['info'] = $d['info'] . "<br>Vous devez entrer le joueur n°1 ! ";
+                $info = $info . "Vous devez entrer le joueur n°1 !<br>";
             }
              if (empty($d['joueur2'])) {
              $valid = false;
-                $d['info'] = $d['info'] . "<br>Vous devez entrer le joueur n°2 ! ";
+                $info = $info . "Vous devez entrer le joueur n°2 !<br>";
             }
             if (empty($d['joueur3'])) {
              $valid = false;
-                $d['info'] = $d['info'] . "<br>Vous devez entrer le joueur n°3 ! ";
+                $info = $info . "Vous devez entrer le joueur n°3 !<br>";
             }
             if (empty($d['joueur4'])) {
              $valid = false;
-                $d['info'] = $d['info'] . "<br>Vous devez entrer le joueur n°4 ! ";
+                $info = $info . "Vous devez entrer le joueur n°4 !<br>";
             }
             if (empty($d['joueur5'])) {
              $valid = false;
-                $d['info'] = $d['info'] . "<br>Vous devez entrer le joueur n°5 ! ";
+                $info = $info . "Vous devez entrer le joueur n°5 !<br>";
             }
             if (empty($d['joueur6'])) {
              $valid = false;
-                $d['info'] = $d['info'] . "<br>Vous devez entrer le joueur n°6 ! ";
+                $info = $info . "Vous devez entrer le joueur n°6 !<br>";
             }
             if (empty($d['joueur7'])) {
              $valid = false;
-                $d['info'] = $d['info'] . "<br>Vous devez entrer le joueur n°7 ! ";
+                $info = $info . "Vous devez entrer le joueur n°7 !<br>";
             }
             if (empty($d['joueur8'])) {
              $valid = false;
-                $d['info'] = $d['info'] . "<br>Vous devez entrer le joueur n°8 ! ";
+                $info = $info . "Vous devez entrer le joueur n°8 !<br>";
             }
             
             
@@ -271,10 +275,11 @@ class MatchFinController extends Controller {
                 $valeurs = array($id,$_POST['joueur8']);
                 $modScore->insert($colones, $valeurs);
                 
-                $d['info'] .= 'Les matchs de demi-finale ont été crées !';
+                $_SESSION['info'] = 'Les matchs de quart de finale ont bien été créés success';
+                $this->redirect('/matchfin/listePH');
+                exit();
             }
-
-   
+            $_SESSION['info'] = $info.' danger';
         }
         $this->set($d);
     }

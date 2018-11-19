@@ -1,11 +1,5 @@
 <h1>Création de tournoi</h1>
 
-<?php
-    if(isset($info)){
-        echo "<h4>$info</h4>";
-    }
-?>
-
 <form  name="monForm" method="post" class="form-horizontal" action="<?= BASE_URL ?>/tourn/creaTournoi" >
 <!-- Text input-->
 <div class="form-group">

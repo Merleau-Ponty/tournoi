@@ -8,7 +8,6 @@
 class TournController extends Controller {
 
     public function home() {
-        
     }
 
     //Méthode pour lister les inscrits
@@ -28,7 +27,7 @@ class TournController extends Controller {
         $d['DATEFIN'] = '';
         $d['DATELIMITE_INSCR'] = '';
         $d['PRIX'] = '';
-        $d['info'] = '';
+        $info = '';
         $valid = true;
 
 //Cas ou le formulaire a été soummis
@@ -44,27 +43,27 @@ class TournController extends Controller {
 
             if (empty($d['NOM'])) {
                 $valid = false;
-                $d['info'] = $d['info'] . "<br>Le nom est obligatoire";
+                $info = $info . "Le nom est obligatoire<br>";
             }
             if (empty($d['JEU'])) {
                 $valid = false;
-                $d['info'] = $d['info'] . "<br>Le nom du jeu est obligatoire";
+                $info = $info . "Le nom du jeu est obligatoire<br>";
             }
             if (empty($d['DATEDEBUT'])) {
                 $valid = false;
-                $d['info'] = $d['info'] . "<br>La date de début du tournoi est obligatoire";
+                $info = $info . "La date de début du tournoi est obligatoire<br>";
             }
             if (empty($d['DATEFIN'])) {
                 $valid = false;
-                $d['info'] = $d['info'] . "<br>La date de fin du tournoi est obligatoire";
+                $info = $info . "La date de fin du tournoi est obligatoire<br>";
             }
             if (empty($d['PRIX'])) {
                 $valid = false;
-                $d['info'] = $d['info'] . "<br>Le prix du tournoi est obligatoire";
+                $info = $info . "Le prix du tournoi est obligatoire<br>";
             }
             if (empty($d['DATELIMITE_INSCR'])) {
                 $valid = false;
-                $d['info'] = $d['info'] . "<br>La date limite d'inscription doit être renseigné";
+                $info = $info . "La date limite d'inscription doit être renseigné<br>";
             }
 
             //on prépare la requête SQL si les données sont valides
@@ -73,9 +72,11 @@ class TournController extends Controller {
                 $valeurs = array($d['NOM'], $d['JEU'], $d['DATEFIN'], $d['DATEDEBUT'], $d['DATELIMITE_INSCR'], $d['PRIX']);
                 $_SESSION['id'] = $modTournoi->insertAI($colonnes, $valeurs);
                 $_SESSION['nom'] = $d['NOM'];
+                $_SESSION['info'] = 'Le tournoi "'.$d['NOM'].'" a bien été créé success';
                 $this->redirect('/poule/creaPoule');
-                exit();
+                exit();   
             }
+            $_SESSION['info'] = $info . ' danger';
         }
         $this->set($d);
     }
@@ -91,6 +92,7 @@ class TournController extends Controller {
     public function tourn_valid($id_tournoi) {
         $_SESSION['idtournoi'] = $id_tournoi;
         unset($_SESSION['poule_created']);
+        $_SESSION['info'] = 'Vous êtes dans la gestion du tournoi n°'.$id_tournoi.' info'; 
         $this->redirect('/tourn/liste_inscrit');
         exit;
     }

@@ -1,6 +1,11 @@
 body{ 
     margin:0px; 
-} 
+}
+
+#info {
+    margin: 2%;
+}
+
 #header{ 
     height:80px; 
     background:#00c0ff; 

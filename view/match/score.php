@@ -28,6 +28,6 @@ $compt = 0;
                         <?php endforeach; ?>
                     </tbody>
                 </table>
-                <button type="submit" name="valider" value="Submit">Submit</button>
+                <input class="btn btn-primary" type="submit" value="Valider">    
             </form>
         </div>
