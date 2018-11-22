@@ -13,6 +13,7 @@
  */
 class PouleController extends Controller {
 
+    // function permettant la création des poules
     public function creaPoule() {
 
         $modTournoi = $this->loadModel('Tournoi');
@@ -29,6 +30,7 @@ class PouleController extends Controller {
 
                 $ID_POULE = $ID_POULE + 1;
             }
+//Mise en session de l'id poule et redirection vers la page d'accueil de l'application
             unset($_SESSION['id']);
             $_SESSION['info'] = 'Les poules du tournoi "'.$_SESSION['nom'].'" ont bien été crées success';
             unset($_SESSION['nom']);
@@ -37,12 +39,14 @@ class PouleController extends Controller {
         }
     }
 
+    // function permettant la crétion d'un tableau montrant les joueurs en fonction de leurs poules
     public function liste() {
 
         $modJoueurPoule = $this->loadModel('JoueurPoule');
         $projection = 'poules.NUMERO,joueurs.*';
+        $orderby = 'poules.NUMERO';
         $conditions = array('joueurs.ID_TOURNOI'=>$_SESSION['idtournoi'], 'joueurs.ETAT'=>'1');
-        $param = array('projection'=>$projection,'conditions'=>$conditions);
+        $param = array('projection'=>$projection,'conditions'=>$conditions, 'orderby'=>$orderby);
         $d['joueurs'] = $modJoueurPoule->find($param);
         
         $this->set($d);
