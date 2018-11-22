@@ -83,6 +83,12 @@ class Model {
 
             $sql .= $req['groupby'];
         }
+         // si le order by est renseigné on l'ajoute à la requete
+        if (isset($req['orderby'])) {
+            $sql .= 'order by ';
+
+            $sql .= $req['orderby'];
+        }
         try {
 
             $pre = $this->db->prepare($sql);
