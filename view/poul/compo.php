@@ -1,3 +1,6 @@
+<?php
+	if ($_SESSION["tab"] == true) {
+?>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
@@ -23,3 +26,8 @@
                 </tbody>
             </table> 
         </div>
+	<?php
+	}
+	else {}
+	unset($_SESSION["tab"]);
+	?>
