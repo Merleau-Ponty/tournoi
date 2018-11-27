@@ -7,13 +7,11 @@ class MatchpouleController extends Controller {
         $modMatch_Poule = $this->loadModel('Match_Poule');
         $projection = 'ID_MATCH';
         $condition = array('NUMERO' => $num_poule_current, 'ID_TOURNOI' => $_SESSION['idtournoi']);
-        $param = array('conditions' => $condition);
+        $param = array('conditions' => $condition, 'projection'=>$projection);
         $result = $modMatch_Poule->find($param);
-
         // Si on affiche la création des match ou pas
         $_SESSION['affich'] = TRUE;
 
-        // Pour charger les joueurs d'une poule et renvoie un tableau de matchs
         $d['num_poule'] = $num_poule_current;
 
         // On vérifie que les matchs de cette poule ne soit pas déjà créé
@@ -108,12 +106,7 @@ class MatchpouleController extends Controller {
                     }
 
                     // Affichage de l'info dans la prochaine view
-                    $_SESSION['info'] = '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                                        Les matchs de la poule numéro ' . $num_poule_current . ' ont bien été créés.
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>';
+                    $_SESSION['info'] = 'Les matchs de la poule numéro ' . $num_poule_current . ' ont bien été créés success';
 
                     // Gestion de la création des poules qui va servir à la redirection
                     // Si c'est la première fois qu'on arrive dans les création des matchs
@@ -156,12 +149,7 @@ class MatchpouleController extends Controller {
                     }
                 } else {
                     // Affichage de l'info dans la prochaine view
-                    $_SESSION['info'] = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                        Il y a une erreur dans le formulaire, veillez resaisir les données !
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>';
+                    $_SESSION['info'] = 'Il y a une erreur dans le formulaire, veillez resaisir les données ! danger';
                     // On vide le $_POST pour recharger le formulaire
                     unset($_POST);
                     // Une données est invalide, on renvoie donc sur le formulaire de la même poule
@@ -202,7 +190,7 @@ class MatchpouleController extends Controller {
     //Liste les matchs de poules
     public function liste($num_poule) {
 
-        //Permet de lister les matchs dans une poule avec le pseudo des joueurs, leur scores et l'horaire des matchs.
+        //Permet de lister les matchs dans une poule avec le pseudo des joueurs, leur scoreset l'horaire des matchs.
         $modelmatch_poule = $this->loadModel('JoueurScoreMatch_poule');
         $projection = 'match_poule.NUMERO, match_poule.ID_MATCH, match_poule.DATE_HEURE, GROUP_CONCAT(joueurs.PSEUDO SEPARATOR " vs ") AS JOUEURS, GROUP_CONCAT(CONCAT(joueurs.PSEUDO, " = ",IFNULL(scores.SCORE, "Pas de score")) SEPARATOR " | ") AS SCORES';
         $groupby = 'match_poule.ID_MATCH';

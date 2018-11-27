@@ -1,18 +1,39 @@
-<?php
 
+Skip to content
+
+    Pull requests
+    Issues
+    Marketplace
+    Explore
+
+    @nolanmrq
+
+2
+1
+
+    0
+
+Merleau-Ponty/tournoi
+Code
+Issues 0
+Pull requests 0
+Projects 0
+Wiki
+Insights
+tournoi/controller/MatchController.php
+4d400b2 8 days ago
+Nolan Messages d'info généralisés de toutes les view via un affichage dans …
+62 lines (54 sloc) 2.43 KB
+<?php
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 class matchController extends Controller {
-
     public function score($id_match) {
-
         $valid = TRUE;
         $d['id_match'] = $id_match;
-
         if (isset($_POST["Score_1"]) && isset($_POST["Score_2"])) {
             $s1 = $_POST["Score_1"];
             $s2 = $_POST["Score_2"];
@@ -57,5 +78,4 @@ class matchController extends Controller {
             $this->set($d);
         }
     }
-
 }
